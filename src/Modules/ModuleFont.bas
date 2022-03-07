@@ -32,12 +32,12 @@ Sub CopyFontAttributeToClipboard()
         italic = myDocument.Selection.TextRange.Font.Italic
         align = myDocument.Selection.TextRange.ParagraphFormat.Alignment
         'valign = ?
-        ' lineSpacing = myDocument.Selection.TextRange.ParagraphFormat.SpaceWithin
+        'lineSpacing = myDocument.Selection.TextRange.ParagraphFormat.SpaceWithin
         'text = myDocument.Selection.TextRange.Text
 
         PlaceHolderTextRange.Characters(0).InsertAfter Chr(13)
         PlaceHolderTextRange.Characters(0).InsertAfter "fontFace: """ & fontFace & """," & Chr(13)
-        PlaceHolderTextRange.Characters(0).InsertAfter "fontSize: " & Round(fontSize, 2) & "," & Chr(13)
+        PlaceHolderTextRange.Characters(0).InsertAfter "fontSize: " & Round(fontSize, 3) & "," & Chr(13)
         If Not color = 0 Then
             hexColor = Right("000000" & Hex(color), 6)
             hexColor = "#" & Right(hexColor, 2) & Mid(hexColor, 3, 2) & Left(hexColor, 2)
@@ -54,7 +54,7 @@ Sub CopyFontAttributeToClipboard()
         ElseIf align = ppAlignRight Then
             PlaceHolderTextRange.Characters(0).InsertAfter "align: ""right""," & Chr(13)
         End If
-        ' PlaceHolderTextRange.Characters(0).InsertAfter "lineSpacing: " & Round(lineSpacing, 2) & "," & Chr(13)
+        ' PlaceHolderTextRange.Characters(0).InsertAfter "lineSpacing: " & Round(lineSpacing, 3) & "," & Chr(13)
 
         SlidePlaceHolder.TextFrame.TextRange.Copy
         SlidePlaceHolder.Delete

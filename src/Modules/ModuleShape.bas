@@ -23,10 +23,10 @@ Sub CopyShapeAttributeToClipboard()
         WidthToCopy = myDocument.Selection.ShapeRange(1).Width
         HeightToCopy = myDocument.Selection.ShapeRange(1).Height
         PlaceHolderTextRange.Characters(0).InsertAfter Chr(13)
-        PlaceHolderTextRange.Characters(0).InsertAfter "x: " & Round(LeftToCopy / 72, 2) & "," & Chr(13)
-        PlaceHolderTextRange.Characters(0).InsertAfter "y: " & Round(TopToCopy / 72, 2) & "," & Chr(13)
-        PlaceHolderTextRange.Characters(0).InsertAfter "w: " & Round(WidthToCopy / 72, 2) & "," & Chr(13)
-        PlaceHolderTextRange.Characters(0).InsertAfter "h: " & Round(HeightToCopy / 72, 2) & "," & Chr(13)
+        PlaceHolderTextRange.Characters(0).InsertAfter "x: " & Round(LeftToCopy / 72, 3) & "," & Chr(13)
+        PlaceHolderTextRange.Characters(0).InsertAfter "y: " & Round(TopToCopy / 72, 3) & "," & Chr(13)
+        PlaceHolderTextRange.Characters(0).InsertAfter "w: " & Round(WidthToCopy / 72, 3) & "," & Chr(13)
+        PlaceHolderTextRange.Characters(0).InsertAfter "h: " & Round(HeightToCopy / 72, 3) & "," & Chr(13)
 
         SlidePlaceHolder.TextFrame.TextRange.Copy
         SlidePlaceHolder.Delete
