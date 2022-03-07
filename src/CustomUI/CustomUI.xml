@@ -9,8 +9,8 @@
                <control idMso="ObjectSizeAndPositionDialog" showLabel="false" />
             </group>
             <group id="GenerateCodeGroup" label="GenerateCode" imageMso="RightArrow2">
-               <button id="CopyShapeAttribute" label="Copy shape attribute to clipboard" imageMso="GroupClipboard" onAction="CopyShapeAttributeToClipboard" />
-               <button id="CopyFontAttribute" label="Copy font attribute to clipboard" imageMso="GroupClipboard" onAction="CopyFontAttributeToClipboard" />
+               <button id="CopyShapeAttribute" label="Copy shape attribute to clipboard" imageMso="SizeToFit" showLabel="false" onAction="CopyShapeAttributeToClipboard" />
+               <button id="CopyFontAttribute" label="Copy font attribute to clipboard" imageMso="FontSchemes" showLabel="false" onAction="CopyFontAttributeToClipboard" />
             </group>
          </tab>
       </tabs>
