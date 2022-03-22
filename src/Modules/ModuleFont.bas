@@ -40,7 +40,7 @@ Sub CopyFontAttributeToClipboard()
         PlaceHolderTextRange.Characters(0).InsertAfter "fontSize: " & Round(fontSize, 3) & "," & Chr(13)
         If Not color = 0 Then
             hexColor = Right("000000" & Hex(color), 6)
-            hexColor = "#" & Right(hexColor, 2) & Mid(hexColor, 3, 2) & Left(hexColor, 2)
+            hexColor = Right(hexColor, 2) & Mid(hexColor, 3, 2) & Left(hexColor, 2)
             PlaceHolderTextRange.Characters(0).InsertAfter "color: """ & hexColor & """" & Chr(13)
         End If
         If bold Then

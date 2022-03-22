@@ -31,7 +31,7 @@ After select the text and click the button shown above, the following code will 
 ```
 fontFace: "Arial Narrow",
 fontSize: 24,
-color: "#4472C4"
+color: "4472C4"
 italic: true,
 align: "center",
 ```
