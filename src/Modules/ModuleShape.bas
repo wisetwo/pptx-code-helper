@@ -3,10 +3,10 @@ Sub CopyShapeAttributeToClipboard()
     Dim PresentationSlide As PowerPoint.Slide
     Dim SlidePlaceHolder As PowerPoint.Shape
     Dim ClipboardObject As Object
-    Dim TopToCopy As Long
-    Dim LeftToCopy As Long
-    Dim WidthToCopy As Long
-    Dim HeightToCopy As Long
+    Dim PosX As Long
+    Dim PosY As Long
+    Dim Width As Long
+    Dim Height As Long
 
     Set SlidePlaceHolder = ActivePresentation.Slides(1).Shapes.AddShape(Type:=msoShapeRectangle, Left:=0, Top:=0, Width:=100, Height:=100)
     Dim PlaceHolderTextRange As TextRange
@@ -18,15 +18,16 @@ Sub CopyShapeAttributeToClipboard()
         SlidePlaceHolder.Delete
         MsgBox "No shapes selected."
     Else
-        TopToCopy = myDocument.Selection.ShapeRange(1).Top
-        LeftToCopy = myDocument.Selection.ShapeRange(1).Left
-        WidthToCopy = myDocument.Selection.ShapeRange(1).Width
-        HeightToCopy = myDocument.Selection.ShapeRange(1).Height
+        Set ShapeObj = myDocument.Selection.ShapeRange
+        PosX = ShapeObj.Left
+        PosY = ShapeObj.Top
+        Width = ShapeObj.Width
+        Height = ShapeObj.Height
         PlaceHolderTextRange.Characters(0).InsertAfter Chr(13)
-        PlaceHolderTextRange.Characters(0).InsertAfter "x: " & Round(LeftToCopy / 72, 3) & "," & Chr(13)
-        PlaceHolderTextRange.Characters(0).InsertAfter "y: " & Round(TopToCopy / 72, 3) & "," & Chr(13)
-        PlaceHolderTextRange.Characters(0).InsertAfter "w: " & Round(WidthToCopy / 72, 3) & "," & Chr(13)
-        PlaceHolderTextRange.Characters(0).InsertAfter "h: " & Round(HeightToCopy / 72, 3) & "," & Chr(13)
+        PlaceHolderTextRange.Characters(0).InsertAfter "x: " & Round(PosX / 72, 3) & "," & Chr(13)
+        PlaceHolderTextRange.Characters(0).InsertAfter "y: " & Round(PosY / 72, 3) & "," & Chr(13)
+        PlaceHolderTextRange.Characters(0).InsertAfter "w: " & Round(Width / 72, 3) & "," & Chr(13)
+        PlaceHolderTextRange.Characters(0).InsertAfter "h: " & Round(Height / 72, 3) & "," & Chr(13)
 
         SlidePlaceHolder.TextFrame.TextRange.Copy
         SlidePlaceHolder.Delete
