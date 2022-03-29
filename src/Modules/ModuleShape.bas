@@ -23,7 +23,6 @@ Sub CopyShapeAttributeToClipboard()
         PosY = ShapeObj.Top
         Width = ShapeObj.Width
         Height = ShapeObj.Height
-        PlaceHolderTextRange.Characters(0).InsertAfter Chr(13)
         PlaceHolderTextRange.Characters(0).InsertAfter "x: " & Round(PosX / 72, 3) & "," & Chr(13)
         PlaceHolderTextRange.Characters(0).InsertAfter "y: " & Round(PosY / 72, 3) & "," & Chr(13)
         PlaceHolderTextRange.Characters(0).InsertAfter "w: " & Round(Width / 72, 3) & "," & Chr(13)

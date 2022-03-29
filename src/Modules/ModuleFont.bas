@@ -17,10 +17,10 @@ Sub CopyFontAttributeToClipboard()
     Dim paraSpaceAfter As Long
     'Dim text As String
     Dim valign As String
-    Dim marginTop As Long
+    Dim marginLeft As Long
     Dim marginRight As Long
     Dim marginBottom As Long
-    Dim marginLeft As Long
+    Dim marginTop As Long
 
     Set SlidePlaceHolder = ActivePresentation.Slides(1).Shapes.AddShape(Type:=msoShapeRectangle, Left:=0, Top:=0, Width:=100, Height:=100)
     Dim PlaceHolderTextRange As TextRange
@@ -49,21 +49,19 @@ Sub CopyFontAttributeToClipboard()
         paraSpaceAfter = ParagraphObj.SpaceAfter
 
         valign = TextParent.VerticalAnchor
-        marginTop = TextParent.MarginTop
+        marginLeft = TextParent.marginLeft
         marginRight = TextParent.marginRight
         marginBottom = TextParent.marginBottom
-        marginLeft = TextParent.marginLeft
+        marginTop = TextParent.MarginTop
 
         'text = myDocument.Selection.TextRange.Text
-
-        PlaceHolderTextRange.Characters(0).InsertAfter Chr(13)
 
         'font attribute
         PlaceHolderTextRange.Characters(0).InsertAfter "fontFace: """ & fontFace & """," & Chr(13)
         PlaceHolderTextRange.Characters(0).InsertAfter "fontSize: " & Round(fontSize, 3) & "," & Chr(13)
         If Not color = 0 Then
             hexColor = Right("000000" & Hex(color), 6)
-            hexColor = Right(hexColor, 2) & Mid(hexColor, 3, 2) & Left(hexColor, 2)
+            hexColor = "#" & Right(hexColor, 2) & Mid(hexColor, 3, 2) & Left(hexColor, 2)
             PlaceHolderTextRange.Characters(0).InsertAfter "color: """ & hexColor & """" & Chr(13)
         End If
         If bold Then
@@ -72,23 +70,24 @@ Sub CopyFontAttributeToClipboard()
         If italic Then
             PlaceHolderTextRange.Characters(0).InsertAfter "italic: true," & Chr(13)
         End If
-        'default unit is points TODO FIX ME
+        'unit is points
         if Not charSpacing = 0 Then
             PlaceHolderTextRange.Characters(0).InsertAfter "charSpacing: " & Round(charSpacing, 3) & "," & Chr(13)
         End If
 
         'paragraph attribute
-        'default left
-        If align = ppAlignCenter Then
+        If align = ppAlignLeft Then
+            PlaceHolderTextRange.Characters(0).InsertAfter "align: ""left""," & Chr(13)
+        ElseIf align = ppAlignCenter Then
             PlaceHolderTextRange.Characters(0).InsertAfter "align: ""center""," & Chr(13)
         ElseIf align = ppAlignRight Then
             PlaceHolderTextRange.Characters(0).InsertAfter "align: ""right""," & Chr(13)
         End If
-        'default to 1? TODO FIX ME
+        'unit is points, default value is 1
         if Not lineSpacing = 0 Then
             PlaceHolderTextRange.Characters(0).InsertAfter "lineSpacing: " & Round(lineSpacing, 3) & "," & Chr(13)
         End If
-        'default unit is pt TODO FIX ME
+        'unit is points
         if Not paraSpaceBefore = 0 Then
             PlaceHolderTextRange.Characters(0).InsertAfter "paraSpaceBefore: " & Round(paraSpaceBefore, 3) & "," & Chr(13)
         End If
@@ -98,16 +97,17 @@ Sub CopyFontAttributeToClipboard()
 
         'other attribute
         'default value is top
-        If valign = msoAnchorMiddle Then
+        If valign = msoAnchorTop Then
+            PlaceHolderTextRange.Characters(0).InsertAfter "valign: ""top""," & Chr(13)
+        ElseIf valign = msoAnchorMiddle Then
             PlaceHolderTextRange.Characters(0).InsertAfter "valign: ""middle""," & Chr(13)
         ElseIf valign = msoAnchorBottom Then
             PlaceHolderTextRange.Characters(0).InsertAfter "valign: ""bottom""," & Chr(13)
         End If
-
+        'unit is points
         If Not (marginTop = 0 And marginRight = 0 And marginBottom = 0 And marginLeft = 0) Then
-            PlaceHolderTextRange.Characters(0).InsertAfter "margin: [" & Round(marginTop / 72, 3) & ", " & Round(marginRight / 72, 3) & ", " & Round(marginBottom / 72, 3) & ", " & Round(marginLeft / 72, 3) & "]," & Chr(13)
+            PlaceHolderTextRange.Characters(0).InsertAfter "margin: [" & Round(marginLeft, 3) & ", " & Round(marginRight, 3) & ", " & Round(marginBottom, 3) & ", " & Round(marginTop, 3) & "]," & Chr(13)
         End If
-
 
         SlidePlaceHolder.TextFrame.TextRange.Copy
         SlidePlaceHolder.Delete
