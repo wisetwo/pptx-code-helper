@@ -22,7 +22,6 @@ x: 5.972,
 y: 1.46,
 w: 1.389,
 h: 1.389,
-
 ```
 
 ![Alt text](img/font-attribute.png?raw=true "font-attribute")
