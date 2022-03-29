@@ -10,17 +10,18 @@ Sub CopyFontAttributeToClipboard()
     Dim hexColor As String
     Dim bold As Boolean
     Dim italic As Boolean
-    Dim charSpacing As Long
+    Dim charSpacing As Single
     Dim align As String
-    Dim lineSpacing As Long
-    Dim paraSpaceBefore As Long
-    Dim paraSpaceAfter As Long
+    Dim lineSpacing As Single
+    'Dim lineSpacingMultiple As Long
+    Dim paraSpaceBefore As Single
+    Dim paraSpaceAfter As Single
     'Dim text As String
     Dim valign As String
-    Dim marginLeft As Long
-    Dim marginRight As Long
-    Dim marginBottom As Long
-    Dim marginTop As Long
+    Dim marginLeft As Single
+    Dim marginRight As Single
+    Dim marginBottom As Single
+    Dim marginTop As Single
 
     Set SlidePlaceHolder = ActivePresentation.Slides(1).Shapes.AddShape(Type:=msoShapeRectangle, Left:=0, Top:=0, Width:=100, Height:=100)
     Dim PlaceHolderTextRange As TextRange
@@ -57,12 +58,12 @@ Sub CopyFontAttributeToClipboard()
         'text = myDocument.Selection.TextRange.Text
 
         'font attribute
-        PlaceHolderTextRange.Characters(0).InsertAfter "fontFace: """ & fontFace & """," & Chr(13)
+        PlaceHolderTextRange.Characters(0).InsertAfter "fontFace: '" & fontFace & "'," & Chr(13)
         PlaceHolderTextRange.Characters(0).InsertAfter "fontSize: " & Round(fontSize, 3) & "," & Chr(13)
         If Not color = 0 Then
             hexColor = Right("000000" & Hex(color), 6)
             hexColor = "#" & Right(hexColor, 2) & Mid(hexColor, 3, 2) & Left(hexColor, 2)
-            PlaceHolderTextRange.Characters(0).InsertAfter "color: """ & hexColor & """" & Chr(13)
+            PlaceHolderTextRange.Characters(0).InsertAfter "color: '" & hexColor & "'" & Chr(13)
         End If
         If bold Then
             PlaceHolderTextRange.Characters(0).InsertAfter "bold: true," & Chr(13)
@@ -77,14 +78,19 @@ Sub CopyFontAttributeToClipboard()
 
         'paragraph attribute
         If align = ppAlignLeft Then
-            PlaceHolderTextRange.Characters(0).InsertAfter "align: ""left""," & Chr(13)
+            PlaceHolderTextRange.Characters(0).InsertAfter "align: 'left'," & Chr(13)
         ElseIf align = ppAlignCenter Then
-            PlaceHolderTextRange.Characters(0).InsertAfter "align: ""center""," & Chr(13)
+            PlaceHolderTextRange.Characters(0).InsertAfter "align: 'center'," & Chr(13)
         ElseIf align = ppAlignRight Then
-            PlaceHolderTextRange.Characters(0).InsertAfter "align: ""right""," & Chr(13)
+            PlaceHolderTextRange.Characters(0).InsertAfter "align: 'right'," & Chr(13)
         End If
-        'unit is points, default value is 1
-        if Not lineSpacing = 0 Then
+        'unit is lineSpacing percent
+        If ParagraphObj.LineRuleWithin Then
+            If Not lineSpacing = 1 Then
+                PlaceHolderTextRange.Characters(0).InsertAfter "lineSpacingMultiple: " & Round(lineSpacing, 3) & "," & Chr(13)
+            End If
+        'unit is points
+        ElseIf Not lineSpacing = 0 Then
             PlaceHolderTextRange.Characters(0).InsertAfter "lineSpacing: " & Round(lineSpacing, 3) & "," & Chr(13)
         End If
         'unit is points
@@ -98,11 +104,11 @@ Sub CopyFontAttributeToClipboard()
         'other attribute
         'default value is top
         If valign = msoAnchorTop Then
-            PlaceHolderTextRange.Characters(0).InsertAfter "valign: ""top""," & Chr(13)
+            PlaceHolderTextRange.Characters(0).InsertAfter "valign: 'top'," & Chr(13)
         ElseIf valign = msoAnchorMiddle Then
-            PlaceHolderTextRange.Characters(0).InsertAfter "valign: ""middle""," & Chr(13)
+            PlaceHolderTextRange.Characters(0).InsertAfter "valign: 'middle'," & Chr(13)
         ElseIf valign = msoAnchorBottom Then
-            PlaceHolderTextRange.Characters(0).InsertAfter "valign: ""bottom""," & Chr(13)
+            PlaceHolderTextRange.Characters(0).InsertAfter "valign: 'bottom'," & Chr(13)
         End If
         'unit is points
         If Not (marginTop = 0 And marginRight = 0 And marginBottom = 0 And marginLeft = 0) Then

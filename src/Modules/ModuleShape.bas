@@ -3,10 +3,10 @@ Sub CopyShapeAttributeToClipboard()
     Dim PresentationSlide As PowerPoint.Slide
     Dim SlidePlaceHolder As PowerPoint.Shape
     Dim ClipboardObject As Object
-    Dim PosX As Long
-    Dim PosY As Long
-    Dim Width As Long
-    Dim Height As Long
+    Dim PosX As Single
+    Dim PosY As Single
+    Dim Width As Single
+    Dim Height As Single
 
     Set SlidePlaceHolder = ActivePresentation.Slides(1).Shapes.AddShape(Type:=msoShapeRectangle, Left:=0, Top:=0, Width:=100, Height:=100)
     Dim PlaceHolderTextRange As TextRange
