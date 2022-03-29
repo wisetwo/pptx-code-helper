@@ -9,7 +9,7 @@ An helper tool that helps getting object dimensions (size and position) and font
  | Group | Feature |
  |-|-|
  | Object | - Object horizon and vertical position (x, y)<br>- Object width and height (w, h)|
- | Font | - fontFace, fontSize, color, bold, italic, align |
+ | Font | - fontFace, fontSize, color, bold, italic, align, lineSpacing, paraSpaceBefore, paraSpaceAfter, valign, margin |
  
 ## Examples
 
@@ -19,9 +19,10 @@ After select the shape and click the button shown above, the following code will
 
 ```
 x: 5.972,
-y: 1.458,
+y: 1.46,
 w: 1.389,
 h: 1.389,
+
 ```
 
 ![Alt text](img/font-attribute.png?raw=true "font-attribute")
@@ -29,12 +30,16 @@ h: 1.389,
 After select the text and click the button shown above, the following code will be copied to clipboard:
 
 ```
-fontFace: "Arial Narrow",
+fontFace: 'Arial Narrow',
 fontSize: 24,
-color: "4472C4"
+color: '#4472C4'
 italic: true,
-align: "center",
+align: 'center',
+lineSpacingMultiple: 0.9,
+valign: 'bottom',
+margin: [7.2, 7.2, 3.6, 3.6],
 ```
+> Note that `italic`, `align`, `lineSpacingMultiple` (or `lineSpacing`), `valign`, `margin` attributes are for the whole text content in the text box.
 
 # How to install 
 Pptx-code-helper is a Visual Basic for Applications (VBA) add-in that can be installed within Powerpoint, requiring no administrative rights on most enterprise systems.
