@@ -5,15 +5,14 @@ Sub CopyFontAttributeToClipboard()
     Dim ClipboardObject As Object
 
     Dim fontFace As String
-    Dim fontSize As Long
-    Dim color As Long
+    Dim fontSize As Single
+    Dim color As MsoRGBType
     Dim hexColor As String
     Dim bold As Boolean
     Dim italic As Boolean
     Dim charSpacing As Single
     Dim align As String
     Dim lineSpacing As Single
-    'Dim lineSpacingMultiple As Long
     Dim paraSpaceBefore As Single
     Dim paraSpaceAfter As Single
     'Dim text As String
@@ -102,7 +101,6 @@ Sub CopyFontAttributeToClipboard()
         End If
 
         'other attribute
-        'default value is top
         If valign = msoAnchorTop Then
             PlaceHolderTextRange.Characters(0).InsertAfter "valign: 'top'," & Chr(13)
         ElseIf valign = msoAnchorMiddle Then
