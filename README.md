@@ -38,7 +38,7 @@ lineSpacingMultiple: 0.9,
 valign: 'bottom',
 margin: [7.2, 7.2, 3.6, 3.6],
 ```
-> Note that `italic`, `align`, `lineSpacingMultiple` (or `lineSpacing`), `valign`, `margin` attributes are for the whole text content in the text box.
+> Note that `align`, `lineSpacingMultiple` (or `lineSpacing`), `valign`, `margin` attributes are for the whole text content in the text box.
 
 # How to install 
 Pptx-code-helper is a Visual Basic for Applications (VBA) add-in that can be installed within Powerpoint, requiring no administrative rights on most enterprise systems.
