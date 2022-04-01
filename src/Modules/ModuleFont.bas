@@ -6,8 +6,8 @@ Sub CopyFontAttributeToClipboard()
 
     Dim fontFace As String
     Dim fontSize As Single
-    'Dim color As MsoRGBType
-    Dim color As Single
+    Dim color As MsoRGBType
+    'Dim color As Single
     Dim hexColor As String
     Dim bold As Boolean
     Dim italic As Boolean
@@ -63,7 +63,7 @@ Sub CopyFontAttributeToClipboard()
         If Not color = 0 Then
             hexColor = Right("000000" & Hex(color), 6)
             hexColor = "#" & Right(hexColor, 2) & Mid(hexColor, 3, 2) & Left(hexColor, 2)
-            PlaceHolderTextRange.Characters(0).InsertAfter "color: '" & hexColor & "'" & Chr(13)
+            PlaceHolderTextRange.Characters(0).InsertAfter "color: '" & hexColor & "'," & Chr(13)
         End If
         If bold Then
             PlaceHolderTextRange.Characters(0).InsertAfter "bold: true," & Chr(13)
