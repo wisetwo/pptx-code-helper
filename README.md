@@ -11,7 +11,7 @@ An helper tool that helps getting object dimensions (size and position) and font
  | Object | - Object horizon and vertical position (x, y)<br>- Object width and height (w, h)|
  | Font | - fontFace, fontSize, color, bold, italic, align, charSpacing, lineSpacing, paraSpaceBefore, paraSpaceAfter, valign, margin |
  
- > Note: `charSpacing` is only supported on mac os.
+ > Note: `charSpacing` is only supported on mac OS.
  
 ## Examples
 
@@ -40,7 +40,7 @@ lineSpacingMultiple: 0.9,
 valign: 'bottom',
 margin: [7.2, 7.2, 3.6, 3.6],
 ```
-> Note that `align`, `lineSpacingMultiple` (or `lineSpacing`), `valign`, `margin` attributes are for the whole text content in the text box.
+> Note that `align`, `charSpacing`, `lineSpacingMultiple` (or `lineSpacing`), `valign`, `margin` attributes are for the whole text content in the text box.
 
 # How to install 
 Pptx-code-helper is a Visual Basic for Applications (VBA) add-in that can be installed within Powerpoint, requiring no administrative rights on most enterprise systems.
