@@ -6,7 +6,8 @@ Sub CopyFontAttributeToClipboard()
 
     Dim fontFace As String
     Dim fontSize As Single
-    Dim color As MsoRGBType
+    'Dim color As MsoRGBType
+    Dim color As Single
     Dim hexColor As String
     Dim bold As Boolean
     Dim italic As Boolean
