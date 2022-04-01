@@ -7,7 +7,6 @@ Sub CopyFontAttributeToClipboard()
     Dim fontFace As String
     Dim fontSize As Single
     Dim color As MsoRGBType
-    'Dim color As Single
     Dim hexColor As String
     Dim bold As Boolean
     Dim italic As Boolean
@@ -42,7 +41,13 @@ Sub CopyFontAttributeToClipboard()
         color = FontObj.Color.RGB
         bold = FontObj.Bold
         italic = FontObj.Italic
-        charSpacing = FontObj.Spacing
+        #if Mac then
+          'Run on Mac
+           charSpacing = FontObj.Spacing
+        #else
+          'Run on PC
+          'TODO It seems all ppt versions on PC don't support Spacing
+        #endif
 
         align = ParagraphObj.Alignment
         lineSpacing = ParagraphObj.SpaceWithin
