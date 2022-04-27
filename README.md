@@ -9,7 +9,7 @@ An helper tool that helps getting object dimensions (size and position) and font
  | Group | Feature |
  |-|-|
  | Object | - Object horizon and vertical position (x, y)<br>- Object width and height (w, h)|
- | Font | - fontFace, fontSize, color, bold, italic, align, charSpacing, lineSpacing, paraSpaceBefore, paraSpaceAfter, valign, margin |
+ | Font | - fontFace, fontSize, color, bold, italic, align, charSpacing, lineSpacing, paraSpaceBefore, paraSpaceAfter, valign, margin, fit |
  
  > Note: `charSpacing` is only supported on mac OS.
  
