@@ -21,6 +21,7 @@ Sub CopyFontAttributeToClipboard()
     Dim marginRight As Single
     Dim marginBottom As Single
     Dim marginTop As Single
+    Dim autoSize As PpAutoSize
 
     Set SlidePlaceHolder = ActivePresentation.Slides(1).Shapes.AddShape(Type:=msoShapeRectangle, Left:=0, Top:=0, Width:=100, Height:=100)
     Dim PlaceHolderTextRange As TextRange
@@ -59,6 +60,8 @@ Sub CopyFontAttributeToClipboard()
         marginRight = TextParent.marginRight
         marginBottom = TextParent.marginBottom
         marginTop = TextParent.MarginTop
+
+        autoSize = TextParent.AutoSize
 
         'text = myDocument.Selection.TextRange.Text
 
@@ -114,10 +117,18 @@ Sub CopyFontAttributeToClipboard()
         ElseIf valign = msoAnchorBottom Then
             PlaceHolderTextRange.Characters(0).InsertAfter "valign: 'bottom'," & Chr(13)
         End If
-        'unit is points
-        If Not (marginTop = 0 And marginRight = 0 And marginBottom = 0 And marginLeft = 0) Then
-            PlaceHolderTextRange.Characters(0).InsertAfter "margin: [" & Round(marginLeft, 3) & ", " & Round(marginRight, 3) & ", " & Round(marginBottom, 3) & ", " & Round(marginTop, 3) & "]," & Chr(13)
+
+        'fit attribute
+        If autoSize = ppAutoSizeNone Then
+            PlaceHolderTextRange.Characters(0).InsertAfter "fit: 'none'," & Chr(13)
+        ElseIf autoSize = ppAutoSizeShapeToFitText Then
+            PlaceHolderTextRange.Characters(0).InsertAfter "fit: 'resize'," & Chr(13)
+        ElseIf autoSize = ppAutoSizeMixed Then
+            PlaceHolderTextRange.Characters(0).InsertAfter "fit: 'shrink'," & Chr(13)
         End If
+
+        'unit is points
+        PlaceHolderTextRange.Characters(0).InsertAfter "margin: [" & Round(marginLeft, 3) & ", " & Round(marginRight, 3) & ", " & Round(marginBottom, 3) & ", " & Round(marginTop, 3) & "]," & Chr(13)
 
         SlidePlaceHolder.TextFrame.TextRange.Copy
         SlidePlaceHolder.Delete
